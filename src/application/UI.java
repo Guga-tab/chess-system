@@ -1,34 +1,26 @@
 package application;
 
-import boardgame.Board;
-
+import chess.ChessPiece;
 
 public class UI {
-    private Board board;
 
-    public UI(Board board) {
-        this.board = board;
-    }
-
-    public void print(){
-        int qtRow = board.getRows();
-        int qtColumns = board.getColums();
-        for (int i = 0; i <= qtRow; i++) {
-            if(i == 8){
-                System.out.println("  a b c d e f g h");
-                break;
-            }
-            System.out.print(i + 1 + " ");
-            for (int j = 0; j < qtColumns; j++) {
-                if (board.piece(i, j) != null){
-                    //Lógica para imprimir o Símbolo/Letra da peça
-                    System.out.print("P ");
-                }else{
-                    System.out.print("- ");
-                }
+    public static void printBoard(ChessPiece[][] pieces){
+        for (int i = 0; i < pieces.length; i++) {
+            System.out.print(8 - i + " ");
+            for (int j = 0; j < pieces.length; j++) {
+                printPiece(pieces[i][j]);
             }
             System.out.println();
         }
+        System.out.println("  a b c d e f g h");
     }
 
+    public static void printPiece(ChessPiece piece){
+        if(piece == null){
+            System.out.print("-");
+        }else{
+            System.out.print(piece);
+        }
+        System.out.print(" ");
+    }
 }

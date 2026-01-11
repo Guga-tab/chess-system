@@ -1,67 +1,41 @@
 package chess;
 
+import boardgame.Board;
+import boardgame.Piece;
+import boardgame.Position;
+import chess.pieces.King;
+import chess.pieces.Rook;
+
 public class ChessMatch {
-    private int turn;
-    private Color currentPlayer;
-    private boolean check;
-    private boolean checkMate;
-    private ChessPiece enPassantVulnerabe;
-    private ChessPiece promoted;
 
-    public ChessMatch(int turn, Color currentPlayer, boolean check, boolean checkMate, ChessPiece enPassantVulnerabe, ChessPiece promoted) {
-        this.turn = turn;
-        this.currentPlayer = currentPlayer;
-        this.check = check;
-        this.checkMate = checkMate;
-        this.enPassantVulnerabe = enPassantVulnerabe;
-        this.promoted = promoted;
+    private Board board;
+
+    public ChessMatch() {
+        board = new Board(8,8);
+        initialSetup();
     }
 
-    public int getTurn() {
-        return turn;
+    public ChessPiece[][] getPieces(){
+        ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColums()];
+        for (int i = 0; i < board.getRows(); i++) {
+            for (int j = 0; j < board.getColums(); j++) {
+                //ChessPiece - //Piece
+                mat[i][j] = (ChessPiece) board.piece(i, j);
+            }
+        }
+        return mat;
     }
 
-    public void setTurn(int turn) {
-        this.turn = turn;
+    private void initialSetup(){
+        setPiece(new King(board, Color.BLACK), new Position(0, 4));
+        setPiece(new King(board, Color.WHITE), new Position(7, 4));
+        setPiece(new Rook(board, Color.WHITE), new Position(0, 0));
+        setPiece(new Rook(board, Color.WHITE), new Position(0, 7));
+        setPiece(new Rook(board, Color.BLACK), new Position(7, 7));
+        setPiece(new Rook(board, Color.BLACK), new Position(7, 0));
     }
 
-    public Color getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    public void setCurrentPlayer(Color currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
-    public boolean isCheck() {
-        return check;
-    }
-
-    public void setCheck(boolean check) {
-        this.check = check;
-    }
-
-    public boolean isCheckMate() {
-        return checkMate;
-    }
-
-    public void setCheckMate(boolean checkMate) {
-        this.checkMate = checkMate;
-    }
-
-    public ChessPiece getEnPassantVulrabe() {
-        return enPassantVulnerabe;
-    }
-
-    public void setEnPassantVulrabe(ChessPiece enPassantVulnerabe) {
-        this.enPassantVulnerabe = enPassantVulnerabe;
-    }
-
-    public ChessPiece getPromoted() {
-        return promoted;
-    }
-
-    public void setPromoted(ChessPiece promoted) {
-        this.promoted = promoted;
+    private void setPiece(ChessPiece piece, Position position){
+        board.placePiece(piece, position);
     }
 }
