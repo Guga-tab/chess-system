@@ -26,17 +26,15 @@ public class ChessMatch {
     }
 
     private void initialSetup(){
-        ChessPosition
-        setPiece(new King(board, Color.BLACK), new Position(0, 4));
-        setPiece(new King(board, Color.WHITE), new Position(7, 4));
-        setPiece(new Rook(board, Color.WHITE), new Position(0, 0));
-        setPiece(new Rook(board, Color.WHITE), new Position(0, 7));
-        setPiece(new Rook(board, Color.BLACK), new Position(7, 7));
-        setPiece(new Rook(board, Color.BLACK), new Position(7, 0));
+        setPiece(new King(board, Color.BLACK), 'd', 8);
+        setPiece(new King(board, Color.WHITE),'d', 1);
+        setPiece(new Rook(board, Color.WHITE), 'a', 1);
+        setPiece(new Rook(board, Color.WHITE), 'h', 1);
+        setPiece(new Rook(board, Color.BLACK), 'a', 8);
+        setPiece(new Rook(board, Color.BLACK), 'h', 8);
     }
 
-    private void setPiece(ChessPiece piece, Position position){
-        ChessPosition chessPosition = new ChessPosition((char) position.getColumn(), position.getRow());
-        board.placePiece(piece, chessPosition);
+    private void setPiece(ChessPiece piece, char column, int row){
+        board.placePiece(piece, new ChessPosition(column, row).toPosition());
     }
 }
