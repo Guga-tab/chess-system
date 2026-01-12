@@ -26,12 +26,19 @@ public class ChessMatch {
     }
 
     private void initialSetup(){
-        setPiece(new King(board, Color.BLACK), 'd', 8);
-        setPiece(new King(board, Color.WHITE),'d', 1);
-        setPiece(new Rook(board, Color.WHITE), 'a', 1);
-        setPiece(new Rook(board, Color.WHITE), 'h', 1);
-        setPiece(new Rook(board, Color.BLACK), 'a', 8);
-        setPiece(new Rook(board, Color.BLACK), 'h', 8);
+        setPiece(new King(board, Color.BLACK),'e', 1);
+        setPiece(new Rook(board, Color.BLACK), 'd', 1);
+        setPiece(new Rook(board, Color.BLACK), 'd', 2);
+        setPiece(new Rook(board, Color.BLACK), 'f', 2);
+        setPiece(new Rook(board, Color.BLACK), 'f', 1);
+        setPiece(new Rook(board, Color.BLACK), 'e', 2);
+
+        setPiece(new King(board, Color.WHITE), 'e', 8);
+        setPiece(new Rook(board, Color.WHITE), 'f', 8);
+        setPiece(new Rook(board, Color.WHITE), 'd', 8);
+        setPiece(new Rook(board, Color.WHITE), 'd', 7);
+        setPiece(new Rook(board, Color.WHITE), 'f', 7);
+        setPiece(new Rook(board, Color.WHITE), 'e', 7);
     }
 
     private void setPiece(ChessPiece piece, char column, int row){
