@@ -1,6 +1,8 @@
 package application;
 
+import chess.ChessException;
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chess.Color;
 
 public class UI {
@@ -29,5 +31,9 @@ public class UI {
             System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
         }
         System.out.print(" ");
+    }
+
+    public static void readChessPosition(String position){
+        ChessPosition chessPosition = new ChessPosition(position.charAt(0), (int) position.charAt(1));
     }
 }

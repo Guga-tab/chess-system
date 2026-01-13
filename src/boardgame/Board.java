@@ -60,6 +60,17 @@ public class Board {
         }
     }
 
+    //Remove um peça do tabuleiro
+    public Piece removePiece(Position position){
+        if(thereIsAPiece(position)){
+            pieces[position.getRow()][position.getColumn()].position = null;
+            pieces[position.getRow()][position.getColumn()] = null;
+            return pieces[position.getRow()][position.getColumn()];
+        } else{
+            return null;
+        }
+    }
+
     // Verifica se a posição informada é válida
     public boolean positionExists(Position position){
         if(
