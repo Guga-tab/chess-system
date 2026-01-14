@@ -26,20 +26,4 @@ public class ChessPosition {
     protected static ChessPosition fromPosition(Position position) {
         return new ChessPosition((char) (position.getColumn() + 'a'), position.getRow() + 1);
     }
-
-    public char getColumn() {
-        return column;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setColumn(char column) {
-        this.column = column;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
 }

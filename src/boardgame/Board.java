@@ -19,16 +19,8 @@ public class Board {
         return rows;
     }
 
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
     public int getColums() {
         return columns;
-    }
-
-    public void setColums(int columns) {
-        this.columns = columns;
     }
 
     // Buscar uma peça do Board através da linha e coluna

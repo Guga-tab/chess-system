@@ -1,7 +1,7 @@
 package chess;
 
 import boardgame.Board;
-import boardgame.BoardException;
+import boardgame.Piece;
 import boardgame.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
@@ -9,6 +9,7 @@ import chess.pieces.Rook;
 public class ChessMatch {
 
     private Board board;
+    private Color currentPlayer;
 
     public ChessMatch() {
         board = new Board(8,8);
@@ -47,26 +48,32 @@ public class ChessMatch {
     }
 
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
-        validadeSourcePosition(sourcePosition.toPosition(), targetPosition.toPosition());
-        makeMove(sourcePosition.toPosition(), targetPosition.toPosition());
+        validadeSourcePosition(sourcePosition.toPosition());
+        ChessPiece piece = makeMove(sourcePosition.toPosition(), targetPosition.toPosition());
+
+        return piece;
     }
 
-    private boolean validadeSourcePosition(Position sourcePosition, Position targetPosition){
-        if (board.positionExists(sourcePosition) && board.positionExists(targetPosition)){
-            return true;
-        } else{
-            throw new BoardException("Posições inválidas");
+    private void validadeSourcePosition(Position sourcePosition){
+        if (!board.thereIsAPiece(sourcePosition)) {
+            throw new ChessException("Não há peça na posição de origem");
         }
+
+        ChessPiece piece = (ChessPiece) board.piece(sourcePosition);
+
+        if (piece.getColor() != currentPlayer) {
+            throw new ChessException("A peça escolhida não é sua");
+        }
+
+        /*if (!piece.isThereAnyPossibleMove()) {
+            throw new ChessException("Não há movimentos possíveis para essa peça");
+        }*/
     }
 
-    private void makeMove(Position sourcePosition, Position targetPosition){
-        if (board.thereIsAPiece(targetPosition)){
-            board.removePiece(targetPosition);
+    private ChessPiece makeMove(Position sourcePosition, Position targetPosition){
+            Piece piece = board.removePiece(targetPosition);
             board.placePiece(board.piece(sourcePosition), targetPosition);
             board.removePiece(sourcePosition);
-        }else{
-            board.placePiece(board.piece(sourcePosition), targetPosition);
-            board.removePiece(sourcePosition);
-        }
+            return (ChessPiece) piece;
     }
 }
