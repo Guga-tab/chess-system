@@ -67,9 +67,9 @@ public class ChessMatch {
             throw new ChessException("A peça escolhida não é sua");
         }
 
-        /*if (!piece.isThereAnyPossibleMove()) {
+        if (!piece.isThereAnyPossibleMove()) {
             throw new ChessException("Não há movimentos possíveis para essa peça");
-        }*/
+        }
     }
 
     private ChessPiece makeMove(Position sourcePosition, Position targetPosition){

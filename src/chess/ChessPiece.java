@@ -5,6 +5,7 @@ import boardgame.Piece;
 
 public abstract class ChessPiece extends Piece {
     private Color color;
+    protected Board board;
 
     public ChessPiece(Board board, Color color) {
         super(board);
