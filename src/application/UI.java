@@ -12,8 +12,8 @@ public class UI {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void printBoard(ChessPiece[][] pieces){
-        for (int i = 0; i < pieces.length; i++) {
-            System.out.print(8 - i + " ");
+        for (int i = pieces.length - 1; i >= 0; i--) {
+            System.out.print(1 + i + " ");
             for (int j = 0; j < pieces.length; j++) {
                 printPiece(pieces[i][j]);
             }
@@ -33,7 +33,20 @@ public class UI {
         System.out.print(" ");
     }
 
-    public static void readChessPosition(String position){
-        ChessPosition chessPosition = new ChessPosition(position.charAt(0), (int) position.charAt(1));
+    public static ChessPosition readChessPosition(String s) {
+        try {
+            char column = s.charAt(0);
+            int row = Integer.parseInt(s.substring(1));
+            return new ChessPosition(column, row);
+        }
+        catch (RuntimeException e) {
+            throw new ChessException("Erro ao ler posição de xadrez. Use valores de a1 a h8.");
+        }
+    }
+
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

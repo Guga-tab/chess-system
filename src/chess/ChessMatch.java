@@ -14,6 +14,7 @@ public class ChessMatch {
     public ChessMatch() {
         board = new Board(8,8);
         initialSetup();
+        currentPlayer = Color.WHITE;
     }
 
     public ChessPiece[][] getPieces(){
@@ -28,19 +29,19 @@ public class ChessMatch {
     }
 
     private void initialSetup(){
-        setPiece(new King(board, Color.BLACK),'e', 1);
-        setPiece(new Rook(board, Color.BLACK), 'd', 1);
-        setPiece(new Rook(board, Color.BLACK), 'd', 2);
-        setPiece(new Rook(board, Color.BLACK), 'f', 2);
-        setPiece(new Rook(board, Color.BLACK), 'f', 1);
-        setPiece(new Rook(board, Color.BLACK), 'e', 2);
+        setPiece(new King(board, Color.BLACK),'e', 8);
+        setPiece(new Rook(board, Color.BLACK), 'd', 8);
+        setPiece(new Rook(board, Color.BLACK), 'd', 7);
+        setPiece(new Rook(board, Color.BLACK), 'f', 8);
+        setPiece(new Rook(board, Color.BLACK), 'f', 7);
+        setPiece(new Rook(board, Color.BLACK), 'e', 7);
 
-        setPiece(new King(board, Color.WHITE), 'e', 8);
-        setPiece(new Rook(board, Color.WHITE), 'f', 8);
-        setPiece(new Rook(board, Color.WHITE), 'd', 8);
-        setPiece(new Rook(board, Color.WHITE), 'd', 7);
-        setPiece(new Rook(board, Color.WHITE), 'f', 7);
-        setPiece(new Rook(board, Color.WHITE), 'e', 7);
+        setPiece(new King(board, Color.WHITE), 'e', 1);
+        setPiece(new Rook(board, Color.WHITE), 'f', 1);
+        setPiece(new Rook(board, Color.WHITE), 'd', 2);
+        setPiece(new Rook(board, Color.WHITE), 'd', 1);
+        setPiece(new Rook(board, Color.WHITE), 'f', 2);
+        setPiece(new Rook(board, Color.WHITE), 'e', 2);
     }
 
     private void setPiece(ChessPiece piece, char column, int row){
@@ -50,6 +51,7 @@ public class ChessMatch {
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
         validadeSourcePosition(sourcePosition.toPosition());
         ChessPiece piece = makeMove(sourcePosition.toPosition(), targetPosition.toPosition());
+        changePlayer();
 
         return piece;
     }
@@ -75,5 +77,13 @@ public class ChessMatch {
             board.placePiece(board.piece(sourcePosition), targetPosition);
             board.removePiece(sourcePosition);
             return (ChessPiece) piece;
+    }
+
+    private void changePlayer(){
+        if (currentPlayer == Color.WHITE){
+            currentPlayer = Color.BLACK;
+        } else {
+            currentPlayer = Color.WHITE;
+        }
     }
 }
