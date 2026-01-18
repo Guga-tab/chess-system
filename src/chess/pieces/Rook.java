@@ -22,21 +22,37 @@ public class Rook extends ChessPiece {
         Position right = new Position(position.getRow() ,position.getColumn() + 1);
         Position up = new Position(position.getRow() + 1 , position.getColumn());
         Position down = new Position(position.getRow() - 1 , position.getColumn());
-        while(board.positionExists(left)){
-            mat[left.getRow()][left.getColumn()] = true;
+
+        while (board.positionExists(left)) {
+            if (canMove(left)) {
+                mat[left.getRow()][left.getColumn()] = true;
+            }
+            if (board.thereIsAPiece(left)) break;
             left.setValues(left.getRow(), left.getColumn() - 1);
         }
-        while(board.positionExists(right)){
-            mat[right.getRow()][right.getColumn()] = true;
-            right.setValues(right.getRow(), right.getColumn() + 1);
+
+        while (board.positionExists(right)) {
+            if (canMove(right)) {
+                mat[right.getRow()][right.getColumn()] = true;
+            }
+            if (board.thereIsAPiece(right)) break;
+            right.setValues(right.getRow(), right.getColumn() - 1);
         }
-        while(board.positionExists(up)){
-            mat[up.getRow()][up.getColumn()] = true;
-            up.setValues(up.getRow() + 1, up.getColumn());
+
+        while (board.positionExists(down)) {
+            if (canMove(down)) {
+                mat[down.getRow()][down.getColumn()] = true;
+            }
+            if (board.thereIsAPiece(down)) break;
+            down.setValues(down.getRow(), down.getColumn() - 1);
         }
-        while(board.positionExists(down)){
-            mat[down.getRow()][down.getColumn()] = true;
-            down.setValues(down.getRow() - 1, down.getColumn());
+
+        while (board.positionExists(up)) {
+            if (canMove(up)) {
+                mat[up.getRow()][up.getColumn()] = true;
+            }
+            if (board.thereIsAPiece(up)) break;
+            up.setValues(up.getRow(), up.getColumn() - 1);
         }
         return mat;
     }

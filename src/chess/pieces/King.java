@@ -29,30 +29,15 @@ public class King extends ChessPiece {
         Position rightUp = new Position(position.getRow() + 1 ,position.getColumn() + 1);
         Position leftDown = new Position(position.getRow() - 1 ,position.getColumn() - 1);
         Position rightDown = new Position(position.getRow() - 1 ,position.getColumn() + 1);
-        if (board.positionExists(left)){
-                mat[left.getRow()][left.getColumn()] = true;
-        }
-        if (board.positionExists(right)){
-                mat[right.getRow()][right.getColumn()] = true;
-        }
-        if (board.positionExists(up)){
-                mat[up.getRow()][up.getColumn()] = true;
-        }
-        if (board.positionExists(down)){
-                mat[down.getRow()][down.getColumn()] = true;
-        }
-        if (board.positionExists(leftUp)){
-                mat[leftUp.getRow()][leftUp.getColumn()] = true;
-        }
-        if (board.positionExists(rightUp)){
-                mat[rightUp.getRow()][rightUp.getColumn()] = true;
-        }
-        if (board.positionExists(leftDown)){
-                mat[leftDown.getRow()][leftDown.getColumn()] = true;
-        }
-        if (board.positionExists(rightDown)){
-                mat[rightDown.getRow()][rightDown.getColumn()] = true;
-        }
+
+        if (canMove(left)) mat[left.getRow()][left.getColumn()] = true;
+        if (canMove(right)) mat[right.getRow()][right.getColumn()] = true;
+        if (canMove(up)) mat[up.getRow()][up.getColumn()] = true;
+        if (canMove(down)) mat[down.getRow()][down.getColumn()] = true;
+        if (canMove(leftUp)) mat[leftUp.getRow()][leftUp.getColumn()] = true;
+        if (canMove(rightUp)) mat[rightUp.getRow()][rightUp.getColumn()] = true;
+        if (canMove(leftDown)) mat[leftDown.getRow()][leftDown.getColumn()] = true;
+        if (canMove(rightDown)) mat[rightDown.getRow()][rightDown.getColumn()] = true;
 
         return mat;
     }
