@@ -6,7 +6,6 @@ import boardgame.Position;
 
 public abstract class ChessPiece extends Piece {
     private Color color;
-    protected Board board;
 
     public ChessPiece(Board board, Color color) {
         super(board);
@@ -22,14 +21,14 @@ public abstract class ChessPiece extends Piece {
     }
 
     protected boolean isThereOpponentPiece(Position position){
-        Piece p = board.piece(position);
-        return p != null && ((ChessPiece) p).getColor() != this.getColor();
+        ChessPiece p = (ChessPiece) getBoard().piece(position);
+        return p != null && p.getColor() != color;
     }
 
     //Verifica se a posição é válida E se há ou não uma peça na posição OU se é oponente
     protected boolean canMove(Position position) {
-        return board.positionExists(position) &&
-                (!board.thereIsAPiece(position) || isThereOpponentPiece(position));
+        return getBoard().positionExists(position) &&
+                (!getBoard().thereIsAPiece(position) || isThereOpponentPiece(position));
     }
 
     @Override
