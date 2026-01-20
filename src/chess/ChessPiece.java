@@ -25,12 +25,6 @@ public abstract class ChessPiece extends Piece {
         return p != null && p.getColor() != color;
     }
 
-    //Verifica se a posição é válida E se há ou não uma peça na posição OU se é oponente
-    protected boolean canMove(Position position) {
-        return getBoard().positionExists(position) &&
-                (!getBoard().thereIsAPiece(position) || isThereOpponentPiece(position));
-    }
-
     @Override
     public abstract String toString();
 }
