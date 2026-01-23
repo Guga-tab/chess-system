@@ -1,6 +1,9 @@
 package application;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import chess.ChessMatch;
@@ -49,6 +52,18 @@ public class UI {
         }
     }
 
+    public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
+        printBoard(chessMatch.getPieces());
+        System.out.println();
+        printCapturedPieces(captured);
+        System.out.println();
+        System.out.println("Turn : " + chessMatch.getTurn());
+        System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+        if (chessMatch.getCheck()) {
+            System.out.println("CHECK!");
+        }
+    }
+
     public static void printBoard(ChessPiece[][] pieces) {
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((8 - i) + " ");
@@ -69,15 +84,6 @@ public class UI {
             System.out.println();
         }
         System.out.println("  a b c d e f g h");
-    }
-
-    public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured){
-        printBoard(chessMatch.getPieces());
-        System.out.println();
-        printCapturedPieces(captured);
-        System.out.println();
-        System.out.println("Turn: " + chessMatch.getTurn());
-        System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
     }
 
     private static void printPiece(ChessPiece piece, boolean background) {
