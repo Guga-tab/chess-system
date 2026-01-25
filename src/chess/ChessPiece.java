@@ -37,7 +37,4 @@ public abstract class ChessPiece extends Piece {
     protected void decreaseMoveCount(){
         moveCount--;
     }
-
-    @Override
-    public abstract String toString();
 }
