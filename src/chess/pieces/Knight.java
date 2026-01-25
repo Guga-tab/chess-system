@@ -8,8 +8,6 @@ import chess.Color;
 
 public class Knight extends ChessPiece {
 
-    private ChessMatch chessMatch;
-
     public Knight(Board board, Color color) {
         super(board, color);
     }
